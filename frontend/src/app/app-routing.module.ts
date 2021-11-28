@@ -9,13 +9,22 @@ import { LoginComponent } from './components/login/login.component';
 
 //Importamos el guard que creamos, para darle acceso o no a una ruta dependiendo si esta loqueado o no.
 import { AuthGuard } from './guards/auth.guard';
+import { NoFoundPageComponent } from './components/no-found-page/no-found-page.component';
+import { HomeComponent } from './components/home/home.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'tareas', pathMatch: 'full'},
+  {path: '', redirectTo: 'inicio', pathMatch:'full'},
+  {path: 'inicio', component: HomeComponent},
+  {path: 'registro', component: RegistroComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'carrito', component: CarritoComponent},
+  {path: 'nosotros', component: NosotrosComponent},
   {path: 'tareas', component: TareasComponent},
   {path: 'privado', component: TareasPrivadasComponent, canActivate:[AuthGuard]},
-  {path: 'registro', component: RegistroComponent},
-  {path: 'login', component: LoginComponent}
+  {path: '404', component: NoFoundPageComponent},
+  {path: '**', redirectTo: '404', pathMatch: 'full'}
 ];
 
 @NgModule({

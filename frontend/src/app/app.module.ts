@@ -17,6 +17,11 @@ import { AuthGuard } from './guards/auth.guard';
 
 //Importamos el token-interceptor que creamos y lo utilizamos en providers y asi poderlo utilizar en cualquier clase de nuestra app.
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { FooterComponent } from './components/footer/footer.component';
+import { NoFoundPageComponent } from './components/no-found-page/no-found-page.component';
+import { HomeComponent } from './components/home/home.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     LoginComponent,
     TareasComponent,
     TareasPrivadasComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent,
+    NoFoundPageComponent,
+    HomeComponent,
+    CarritoComponent,
+    NosotrosComponent
   ],
   imports: [
     BrowserModule,

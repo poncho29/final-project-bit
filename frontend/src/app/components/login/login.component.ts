@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Token } from 'src/app/models/token';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,11 @@ export class LoginComponent implements OnInit {
 
   myForm:FormGroup;
 
+  validacionEmail = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+
   constructor(private fb: FormBuilder, private authService:AuthService, private router:Router) {
     this.myForm = this.fb.group({
-      email: ['',[Validators.required,Validators.email]],
+      email: ['',[Validators.required,Validators.email,Validators.pattern(this.validacionEmail)]],
       password: ['',Validators.required]
     });
   }
@@ -26,9 +29,15 @@ export class LoginComponent implements OnInit {
   loginUsuario():void{
     this.authService.loginUsuario(this.myForm.value).subscribe((res:Token) =>{
       localStorage.setItem('token',res.token);
+      console.log(res.name);
+      this.authService.setNameUser(res.name);
       this.router.navigate(['/']);
     },err => {
-      console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `${err.error}! verifique e intente nuevamente.`
+      });
     });
   }
 

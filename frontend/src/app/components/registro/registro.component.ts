@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Token } from 'src/app/models/token';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router'
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -14,9 +15,14 @@ export class RegistroComponent implements OnInit {
 
   myForm:FormGroup;
 
+  validacionEmail = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+
   constructor(private fb: FormBuilder, private authService:AuthService, private router:Router) {
     this.myForm = this.fb.group({
-      email: ['',[Validators.required,Validators.email]],
+      name: ['',Validators.required],
+      lastnameone: ['',Validators.required],
+      lastnametwo: ['',Validators.required],
+      email: ['',[Validators.required,Validators.email,Validators.pattern(this.validacionEmail)]],
       password: ['',Validators.required]
     });
   }
@@ -27,9 +33,19 @@ export class RegistroComponent implements OnInit {
   registrarUsuario():void{
     this.authService.registrarUsuario(this.myForm.value).subscribe((res:Token) => {
       localStorage.setItem('token',res.token);
+      Swal.fire(
+        'Buen trabajo!',
+        'Te haz registrado de forma exitosa!',
+        'success'
+      );
       this.router.navigate(['/']);
     },err => {
-      console.log(err);
+      console.log(err.error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `${err.error}!`
+      });
     });
 
   }

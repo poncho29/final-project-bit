@@ -1,20 +1,26 @@
-<div class="row">
-  <div class="col-sm-12 col-md-5 mx-auto">
-    <div class="card">
-      <div class="card-header">
-        Iniciar sesión
-      </div>
-      <div class="card-body">
-        <form [formGroup]="myForm" (submit)="loginUsuario()">
-          <div class="form-group mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email" autofocus required formControlName="email">
-          </div>
-          <div class="form-group mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Password" required formControlName="password">
-          </div>
-          <button type="submit" class="btn btn-outline-dark w-100">Ingresar</button>
-        </form>
+<section>
+  <div class="row">
+    <div class="col-sm-12 col-md-5 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="fs-5 text-center">Iniciar sesión</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="myForm" (submit)="loginUsuario()">
+            <div class="form-group mb-3">
+              <input type="email" name="email" class="form-control" id="email" placeholder="Ingrese su email" formControlName="email" required>
+              <span class="text-danger fw-bolder tamano-alertas" *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched">El email es obligatorio *</span>
+              <span class="text-danger fw-bolder tamano-alertas" *ngIf="myForm.get('email')?.hasError('pattern') && myForm.get('email')?.touched">El email es incorrecto *</span>
+            </div>
+            <div class="form-group mb-3">
+              <input type="password" name="password" class="form-control" id="password" placeholder="Ingrese su contraseña" formControlName="password" required>
+              <span class="text-danger fw-bolder tamano-alertas" *ngIf="myForm.get('password')?.hasError('required') && myForm.get('password')?.touched">El password es obligatorio *</span>
+            </div>
+            <button type="submit" class="btn btn-dark w-100" [disabled]="myForm.status === 'INVALID'">Ingresar  <i class="fas fa-sign-in-alt"></i></button>
+            <p class="mt-3 text-center"><a routerLink="/registro" class="text-decoration-none text-black">¿Aun no tienes cuenta?</a></p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

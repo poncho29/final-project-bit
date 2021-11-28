@@ -28,19 +28,26 @@ router.get('/',(req,res)=>{
 router.post('/registro',async(req,res)=>{
     
     /* Aca recibo independiente cada propiedad que nos enviaron desde el FRONTEND en el cuerpo de la peticion */
-    const {email,password} = req.body;
+    const {name,lastnameone,lastnametwo,email,password} = req.body;
     
     /* Creamos un nuevo usuario, para eso hacemos uso del modelo del usuario,
         recibe un objeto el cual le enviamos tal cual las propiedades que el modelo tiene definidas y
         hacemos uso de un metodo de bcrypt llamado hashSync(password) el cual encripta el dato.
     */
-    const newUser = new user({email:email,password:bcrypt.hashSync(password)});
+    const newUser = new user({name:name,lastnameone:lastnameone,lastnametwo:lastnametwo,email:email,password:bcrypt.hashSync(password)});
 
     /* Guardamos el dato en la BD, y este metodo save(), es un metodo asincrono por ende puede tomar un poco de tiempo para poder guardarse,
         y no queremos esperar a que eso termine ya que seria codigo bloqueante y eso no es correcto, entonces por ende le debemos agregar
-        la palabra await, por ende el metodo que lo contiene debe llevar el async
+        la palabra await, por ende el metodo que lo contiene debe llevar el async, 
     */
-    await newUser.save();
+    const user_exits =  await user.findOne({email:email});
+    
+    /* Si no encuentra el email, es porque no existe ese usuario y lo podemos registrar */
+    if(!user_exits){
+        await newUser.save();
+    }else{
+        return res.status(401).send('El email ya se encuetra registrado');
+    }
 
     /* Luego de guardado en la BD queremos queremos devolverle un Token al usuario (id), y gracias a ese id va a poder seguir haciendo peticiones
         dentro del servidor.
@@ -98,7 +105,7 @@ router.post('/login', async(req,res)=>{
     /* Respondo a mi Frontend con un JSON, le damos un nombre a la propiedad y le asignamos el token, ademas de eso tambien le podemos establecer
         el codigo de estado 200,404, etc etc...
     */
-    return res.status(200).json({token:token});
+    return res.status(200).json({token:token,name:user_find.name});
 
 });
 

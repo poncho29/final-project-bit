@@ -1,0 +1,9 @@
+.card{
+  box-shadow: 7px 13px 37px #000;
+}
+form a:hover{
+  text-decoration: underline !important;
+}
+.tamano-alertas{
+  font-size: 0.8rem;
+}

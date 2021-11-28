@@ -3,10 +3,37 @@
 /* Requerimos los metodos Schema y model del modulo mongoose */
 const {Schema,model}= require('mongoose');
 
-/* Definir los datos que vamos a estar guardando de los usuarios */
+/* Definir los datos que vamos a estar guardando de los usuarios, tipo dato, si es requerido o no, y con el trim elimina los espacios en blanco
+    al cominenzo o final, y el unique es para que no se repitan correos en la base de datos.
+*/
 const userSchema = new Schema({
-    email:String,
-    password: String,
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    lastnameone: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    lastnametwo: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true,
+        trim: true
+    }
+
 },
 {
     /* Crea automaticamente 2 campos mas  createdAt (fecha de creado) y el updatedAt (fecha de actualizado) */
