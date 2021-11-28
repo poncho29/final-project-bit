@@ -15,6 +15,8 @@ export class RegistroComponent implements OnInit {
 
   myForm:FormGroup;
 
+  name!:string;
+
   validacionEmail = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
 
   constructor(private fb: FormBuilder, private authService:AuthService, private router:Router) {
@@ -33,6 +35,8 @@ export class RegistroComponent implements OnInit {
   registrarUsuario():void{
     this.authService.registrarUsuario(this.myForm.value).subscribe((res:Token) => {
       localStorage.setItem('token',res.token);
+      this.authService.setNameUser(res.name);
+
       Swal.fire(
         'Buen trabajo!',
         'Te haz registrado de forma exitosa!',
@@ -40,7 +44,6 @@ export class RegistroComponent implements OnInit {
       );
       this.router.navigate(['/']);
     },err => {
-      console.log(err.error);
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

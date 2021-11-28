@@ -63,7 +63,7 @@ router.post('/registro',async(req,res)=>{
     /* Respondo a mi Frontend con un JSON, le damos un nombre a la propiedad y le asignamos el token, ademas de eso tambien le podemos establecer
         el codigo de estado 200,404, etc etc...
     */
-    res.status(200).json({token:token});
+    res.status(200).json({token:token,name:newUser.name});
 
 });
 

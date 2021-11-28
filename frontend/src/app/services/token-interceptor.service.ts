@@ -20,14 +20,20 @@ export class TokenInterceptorService implements HttpInterceptor{
       peticion y va a tratar de añadir mas informacion a una cabecera, es decir, con esto lo que estoy haciendo es
       hacer una cabecera en cada peticion o añadir una cabecera en cada peticion, para no hacerlo manualmente cada vez que
       voy a estar por ejemplo pidiendo algo al servidor
-
   */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const tokenizeReq =  req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.authService.getToken()}`
-      }
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      return next.handle(req);
+    }
+
+    const headers = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${token}`)
     });
-    return next.handle(tokenizeReq);
+
+    return next.handle(headers);
+
   }
 }
