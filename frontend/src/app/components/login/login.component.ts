@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   loginUsuario():void{
     this.authService.loginUsuario(this.myForm.value).subscribe((res:Token) =>{
       localStorage.setItem('token',res.token);
-      this.authService.setNameUser(res.name);
+      localStorage.setItem('user',res.name);
       this.router.navigate(['/']);
     },err => {
       Swal.fire({

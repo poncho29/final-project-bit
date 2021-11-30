@@ -6,8 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent  {
+export class NavbarComponent{
 
-  constructor(public authService:AuthService) { }
+  constructor(public authService:AuthService) {}
 
 }

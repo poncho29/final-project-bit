@@ -11,7 +11,6 @@ import { Router } from '@angular/router'
 export class AuthService {
 
   private URL = 'http://localhost:3000/api';
-  private nameUserLogueado!:string;
 
   constructor(private http: HttpClient, private router:Router) { }
 
@@ -23,12 +22,8 @@ export class AuthService {
     return this.http.post<Token>(this.URL+'/login',user);
   }
 
-  setNameUser(name:string):void{
-    this.nameUserLogueado = name;
-  }
-
-  getNameUser():string{
-    return this.nameUserLogueado;
+  getNameUser():string | null{
+    return localStorage.getItem('user');
   }
 
   usuarioLogueado():boolean{
@@ -41,6 +36,7 @@ export class AuthService {
 
   cerrarSesion(){
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
 
