@@ -1,9 +1,11 @@
 const express = require("express");
-const app = express();
 const cors = require('cors');
 
+const app = express();
+
 /* Requerimos la base de datos, para que se ejecute cuando empiece a correr el servidor */
-require("./database");
+const conectarDB = require("./config/database");
+conectarDB();
 
 /* Este modulo agrega unas cabeceras a la peticion para poder ser pasado a este servidor, es decir, cuando piden datos de un
     servidor externo por cuestiones de seguridad el necesita que yo agregue unas cuantas cabeceras (algo mas de informacion) y para
