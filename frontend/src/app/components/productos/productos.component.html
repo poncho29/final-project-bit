@@ -55,14 +55,13 @@
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">{{infoProductoModal.title}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="text-center">
           <img [src]="infoProductoModal.image" alt="imagen-producto" class="img-modal">
         </div>
-        <h5>{{infoProductoModal.title}}</h5>
         <p>{{infoProductoModal.description}}</p>
         <p><strong>Precio: </strong>{{infoProductoModal.price | currency}}</p>
       </div>
