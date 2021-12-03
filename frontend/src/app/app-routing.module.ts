@@ -13,10 +13,12 @@ import { NoFoundPageComponent } from './components/no-found-page/no-found-page.c
 import { HomeComponent } from './components/home/home.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
+import { ProductosComponent } from './components/productos/productos.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'inicio', pathMatch:'full'},
   {path: 'inicio', component: HomeComponent},
+  {path: 'productos', component: ProductosComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'login', component: LoginComponent},
   {path: 'carrito', component: CarritoComponent},

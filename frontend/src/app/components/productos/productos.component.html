@@ -1,0 +1,51 @@
+<div class="row card-top flex-row justify-content-between align-items-center my-3 py-3">
+  <div class="col-sm-12 col-md-8 col-lg-8 d-flex">
+    <div class="item">
+      <a (click)="filtrar('')">
+        <img src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" alt="">
+        <h6>Todos</h6>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filtrar('electronics')">
+        <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="">
+        <h6>Tecnología</h6>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filtrar('moda')">
+        <img src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100" alt="">
+        <h6>Moda</h6>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filtrar('jewelery')">
+        <img style="width: 62px; margin-top: 5px;" src="https://rukminim1.flixcart.com/image/580/696/kkh6zrk0/jewellery-set/o/w/z/gt-ns-862-matushri-art-original-imafzt9teacakjyn.jpeg?q=50" alt="">
+        <h6>Joyería</h6>
+      </a>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+    <input type="text" [(ngModel)]="terminoBusqueda" (keyup)="busqueda($event)"  placeholder="buscar producto...." class="form-control">
+    <span class="fas fa-search search-icon"></span>
+  </div>
+</div>
+
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="row">
+  <ng-container *ngFor="let producto of filtroCategoria | filtro:llaveBusqueda:'title'">
+    <div class="card h-100 col-sm-12 col-md-4 col-lg-3 d-flex flex-column justify-content-evenly">
+      <div class="text-center">
+        <img [src]="producto.image" alt="imagen-producto">
+      </div>
+      <h5 class="info-card">{{producto.title}}</h5>
+      <p class="info-card">{{producto.description}}</p>
+      <p><strong>Precio: </strong>{{producto.price | currency}}</p>
+      <div class="d-flex align-items-center justify-content-around">
+        <button class="btn btn-dark btn-acciones" (click)="agregarAlCarro(producto)">Añadir <i class="fas fa-shopping-cart"></i></button>
+        <button class="btn btn-warning btn-acciones">Mas info <i class="fas fa-info-circle"></i></button>
+      </div>
+    </div>
+  </ng-container>
+</div>

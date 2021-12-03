@@ -1,0 +1,14 @@
+.card {
+  height: 60vh;
+  margin: 25px;
+  padding: 25px;
+}
+
+h4,
+h6 {
+  font-weight: 400;
+}
+
+.img-producto-tabla{
+  width: 10%;
+}

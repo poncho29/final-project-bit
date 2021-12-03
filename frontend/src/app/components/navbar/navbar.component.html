@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">MI TIENDA</a>
+    <a class="navbar-brand" routerLink="/"><i class="fas fa-shipping-fast fs-3"></i><strong> MI TIENDA</strong></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,6 +8,9 @@
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" routerLink="" routerLinkActive="active">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/productos" routerLinkActive="active">Productos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/nosotros" routerLinkActive="active">Nosotros</a>
@@ -37,7 +40,12 @@
           </li>
         </ng-template>
         <li class="nav-item">
-          <a class="nav-link cursor" routerLink="/carrito" routerLinkActive="active"><i class="fas fa-shopping-cart"></i></a>
+          <a class="nav-link cursor position-relative" routerLink="/carrito" routerLinkActive="active">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{cantidadProductos}}
+            </span>
+          </a>
         </li>
       </ul>
     </div>

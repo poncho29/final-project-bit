@@ -9,7 +9,7 @@ import { TareasComponent } from './components/tareas/tareas.component';
 import { TareasPrivadasComponent } from './components/tareas-privadas/tareas-privadas.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //Importamos el guard que creamos y lo utilizamos en providers y asi poderlo utilizar en cualquier clase nuestra aplicacion.
@@ -22,6 +22,9 @@ import { NoFoundPageComponent } from './components/no-found-page/no-found-page.c
 import { HomeComponent } from './components/home/home.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
+import { ProductosComponent } from './components/productos/productos.component';
+import { FiltroPipe } from './pipes/filtro.pipe';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +38,17 @@ import { NosotrosComponent } from './components/nosotros/nosotros.component';
     NoFoundPageComponent,
     HomeComponent,
     CarritoComponent,
-    NosotrosComponent
+    NosotrosComponent,
+    ProductosComponent,
+    FiltroPipe,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     AuthGuard,
