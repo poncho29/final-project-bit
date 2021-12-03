@@ -1,3 +1,5 @@
-footer{
-  height: 161px;
+@media (max-width: 767px){
+  .border-sm{
+    border-right: 0 !important;
+  }
 }
