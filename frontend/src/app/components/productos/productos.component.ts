@@ -17,6 +17,17 @@ export class ProductosComponent implements OnInit {
   filtroCategoria!: Producto[];
   llaveBusqueda: string = '';
 
+  infoProductoModal:Producto = {
+    category:    "",
+    description: "",
+    id:          0,
+    image:       "",
+    price:       0,
+    quantity:    0,
+    title:       "",
+    total:       0
+  };
+
   terminoBusqueda:string = '';
 
   constructor(private productosSvc: ProductosService, private carritoSvc: CarritoService) { }
@@ -61,6 +72,10 @@ export class ProductosComponent implements OnInit {
         return a;
       }
     });
+  }
+
+  mostrarInfoModal(producto: Producto){
+    this.infoProductoModal = producto;
   }
 
 }

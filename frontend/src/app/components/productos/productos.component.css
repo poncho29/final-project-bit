@@ -33,7 +33,7 @@
   border: none;
 }
 
-.card img{
+.card img, .img-modal{
   width: 150px;
   height: 150px;
   margin-bottom: 15px;

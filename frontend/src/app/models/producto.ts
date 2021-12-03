@@ -5,7 +5,7 @@ export interface Producto {
   image:       string;
   price:       number;
   quantity:    number;
-  rating:      Rating;
+  rating?:      Rating;
   title:       string;
   total:       number;
 }

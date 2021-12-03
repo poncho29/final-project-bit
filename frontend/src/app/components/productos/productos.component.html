@@ -43,9 +43,33 @@
       <p class="info-card">{{producto.description}}</p>
       <p><strong>Precio: </strong>{{producto.price | currency}}</p>
       <div class="d-flex align-items-center justify-content-around">
-        <button class="btn btn-dark btn-acciones" (click)="agregarAlCarro(producto)">Añadir <i class="fas fa-shopping-cart"></i></button>
-        <button class="btn btn-warning btn-acciones">Mas info <i class="fas fa-info-circle"></i></button>
+        <button type="button" class="btn btn-dark btn-acciones" (click)="agregarAlCarro(producto)">Añadir <i class="fas fa-shopping-cart"></i></button>
+        <button type="button" class="btn btn-warning btn-acciones" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="mostrarInfoModal(producto)">Mas info <i class="fas fa-info-circle"></i></button>
       </div>
     </div>
   </ng-container>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <img [src]="infoProductoModal.image" alt="imagen-producto" class="img-modal">
+        </div>
+        <h5>{{infoProductoModal.title}}</h5>
+        <p>{{infoProductoModal.description}}</p>
+        <p><strong>Precio: </strong>{{infoProductoModal.price | currency}}</p>
+      </div>
+      <div class="modal-footer d-flex align-items-center justify-content-around">
+        <button type="button" class="btn btn-warning btn-acciones" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-dark btn-acciones" (click)="agregarAlCarro(infoProductoModal)">Añadir <i class="fas fa-shopping-cart"></i></button>
+      </div>
+    </div>
+  </div>
 </div>
