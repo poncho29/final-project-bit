@@ -1,53 +1,58 @@
 <ng-container *ngIf="productos.length != 0">
   <section class="seccion-tabla">
     <div class="container mt-4 text-center" id="seccion-checkout">
-        <div class="row">
-            <div class="col-sm-12">
-                <h3 class="subtitulo fw-bold">Productos carrito</h3>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Producto</th>
-                            <th>Precio unidad</th>
-                            <th>Cantidad</th>
-                            <th>Subtotal</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let producto of productos; let i = index">
-                        <td>{{i+1}}</td>
-                        <td>{{producto.title}}</td>
-                        <td><img [src]="producto.image" alt="imagen-producto" class="img-producto-tabla"></td>
-                        <td>{{producto.price | currency}}</td>
-                        <td>{{producto.quantity}}</td>
-                        <td>{{ producto.price * producto.quantity | currency}}</td>
-                        <td>
-                          <button class="btn btn-danger" (click)="eliminarProducto(producto)"><i class="fas fa-trash"></i></button>
-                        </td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td colspan="5" class="text-end">Total a pagar</td>
-                        <td><strong>{{subTotal | currency}}</strong></td>
+      <div class="row">
+          <div class="col-sm-12">
+              <h3 class="subtitulo fw-bold">Productos carrito</h3>
+          </div>
+      </div>
+      <div class="row mt-3">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Producto</th>
+                        <th>Precio unidad</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
                     </tr>
-                    </tfoot>
-                </table>
-                <div class="d-flex justify-content-around align-items-center">
-                  <button type="button" class="btn btn-warning" (click)="limpiarCarro()">Limpiar carrito</button>
-                  <button type="button" class="btn btn-warning" routerLink="/productos">Comprar más!!!</button>
-                  <button type="button" class="btn btn-dark">Procesar pago</button>
-                </div>
-            </div>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let producto of productos; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{producto.title}}</td>
+                    <td><img [src]="producto.image" alt="imagen-producto" class="img-producto-tabla"></td>
+                    <td>{{producto.price | currency}}</td>
+                    <td>{{producto.quantity}}</td>
+                    <td>{{ producto.price * producto.quantity | currency}}</td>
+                    <td>
+                      <button class="btn btn-danger" (click)="eliminarProducto(producto)"><i class="fas fa-trash"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="5" class="text-end">Total a pagar</td>
+                    <td><strong>{{subTotal | currency}}</strong></td>
+                </tr>
+                </tfoot>
+            </table>
+          </div>
         </div>
-        <div class="row" id="btn-pagar"></div>
+        <div class="row mt-4">
+          <div class="col-sm-12 col-md-4 col-lg-4 mb-3 d-flex justify-content-center align-items-center">
+            <button type="button" class="btn btn-warning w-100" (click)="limpiarCarro()">Limpiar carrito</button>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4 mb-3 d-flex justify-content-center align-items-center">
+            <button type="button" class="btn btn-warning w-100" routerLink="/productos">Comprar más!!!</button>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4 mb-3 d-flex justify-content-center align-items-center">
+            <button type="button" class="btn btn-dark w-100">Procesar pago</button>
+          </div>
+        </div>
     </div>
 </section>
 </ng-container>
