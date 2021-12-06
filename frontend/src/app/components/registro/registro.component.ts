@@ -35,7 +35,9 @@ export class RegistroComponent implements OnInit {
   registrarUsuario():void{
     this.authService.registrarUsuario(this.myForm.value).subscribe((res:Token) => {
       localStorage.setItem('token',res.token);
-      localStorage.setItem('user',res.name);
+
+      this.authService.verificarTokenAlCargar();
+
       Swal.fire(
         'Buen trabajo!',
         'Te haz registrado de forma exitosa!',

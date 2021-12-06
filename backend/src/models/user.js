@@ -32,8 +32,11 @@ const userSchema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    rol: {
+        type: String,
+        trim: true
     }
-
 },
 {
     /* Crea automaticamente 2 campos mas  createdAt (fecha de creado) y el updatedAt (fecha de actualizado) */

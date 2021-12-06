@@ -11,8 +11,12 @@ const bcrypt = require('bcryptjs');
 */
 const user = require('../models/user');
 
-exports.rutaInicial = (req,res) => {
-    res.send("Hola desde el servidor");
+exports.rutaInicial = async (req,res) => {
+
+    let usuario = await user.findById(req.userId,{_id:0,name:1,rol:1});
+
+    res.json({name:usuario.name,rol:usuario.rol});
+    
 };
 
 exports.registrarUsuario = async(req,res) => {
@@ -137,7 +141,11 @@ exports.tareas = (req,res)=>{
 
 };
 
-exports.tareasPrivadas = (req,res) => {
+exports.tareasPrivadas = async(req,res) => {
+
+    /* console.log(req.userId);
+    let usuario = await user.findById(req.userId,{_id:0,name:1});
+    console.log(usuario); */
 
     res.json([
         {
@@ -164,5 +172,9 @@ exports.tareasPrivadas = (req,res) => {
 
 exports.perfil = (req,res)=>{
     /* envia el id del usuario */
-    res.send(req.userId);
+    res.json(
+        {
+            id : req.userId
+        }
+    );
 }

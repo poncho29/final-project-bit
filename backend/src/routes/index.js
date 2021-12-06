@@ -6,7 +6,7 @@ const router = Router();
 const indexController = require('../controllers/indexController');
 
 
-router.get('/', indexController.rutaInicial);
+router.post('/inicio', verifyToken, indexController.rutaInicial);
 
 /* Ruta registrar usuario */
 router.post('/registro', indexController.registrarUsuario);
@@ -34,29 +34,35 @@ const jwt = require('jsonwebtoken');
 */
 function verifyToken(req,res,next){
 
-    /* Si no tienes una cabecera, no puedes obtener los datos de la ruta que estas visitando */
-    if(!req.headers.authorization){
-        return res.status(401).send("Solicitud rechazada");
+    try {
+        
+        /* Si no tienes una cabecera, no puedes obtener los datos de la ruta que estas visitando */
+        if(!req.headers.authorization){
+            return res.status(401).send("Solicitud rechazada");
+        }
+
+        /* Si tiene una cabecera entonces,  vamos a partir esa cabecera y le vamos a quitar el Bearer que viene antes del token
+            y el metodo split, nos va a devolver un arreglo particionado por palabras, y como eso trae 2 posiciones 0 y 1 y la 1 es donde esta el token
+            entonces la accedemos de una vez
+        */
+        const token  = req.headers.authorization.split(" ")[1];
+
+        /* Si en esa posicion no viene nada */
+        if(token === 'null'){
+            return res.status(401).send("Solicitud rechazada");
+        }
+
+        /* Si viene algun token, vamos a verificar el token que me estan pasando, haciendo uso de jwt declarado al cominzo */
+        const payload = jwt.verify(token,'secretkey');
+        
+        /* Crear una propiedad al objeto req llamada userId, donde va a guardar el id del usuario */
+        req.userId = payload._id;
+
+        /* Una vez creado, continuamos */
+        next();
+
+    } catch (error) {
+        res.status(500).send(error.message);
     }
-
-    /* Si tiene una cabecera entonces,  vamos a partir esa cabecera y le vamos a quitar el Bearer que viene antes del token
-        y el metodo split, nos va a devolver un arreglo particionado por palabras, y como eso trae 2 posiciones 0 y 1 y la 1 es donde esta el token
-        entonces la accedemos de una vez
-    */
-    const token  = req.headers.authorization.split(" ")[1];
-
-    /* Si en esa posicion no viene nada */
-    if(token === 'null'){
-        return res.status(401).send("Solicitud rechazada");
-    }
-
-    /* Si viene algun token, vamos a verificar el token que me estan pasando, haciendo uso de jwt declarado al cominzo */
-    const payload = jwt.verify(token,'secretkey');
-    
-    /* Crear una propiedad al objeto req llamada userId, donde va a guardar el id del usuario */
-    req.userId = payload._id;
-
-    /* Una vez creado, continuamos */
-    next();
 
 }
