@@ -3,6 +3,34 @@ const bcrypt = require("bcryptjs");
 
 const Product = require("../models/producto");
 
+// Ver todos productos
+exports.getProducts = async (req, res) => {
+  try {
+    let products = await Product.find();
+    res.json(products);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Upss... hubo un error en el servidor");
+  }
+};
+
+// Ver un solo producto
+exports.getProduct = async (req, res) => {
+  try {
+    let product = await Product.findById(req.params.id);
+
+    if (!product) {
+      res.status(404).json({ msg: "El producto no existe" });
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Upss... hubo un error en el servidor");
+  }
+};
+
+// Agregar un nuevo producto
 exports.addProduct = async (req, res) => {
   try {
     const {
@@ -27,58 +55,77 @@ exports.addProduct = async (req, res) => {
       total: total,
     });
 
-    const product_exits = await product.findOne({ title: title });
+    const product_exits = await Product.findOne({ title: title });
 
     if (!product_exits) {
       await newProduct.save();
+      res.status(200).send(newProduct);
     } else {
       return res.status(401).send("El producto ya se encuetra registrado");
     }
-
-    const token = jwt.sign({ _id: newProduct._id }, "productokay");
-
-    res.status(200).json({ token: token, name: newProduct.title });
   } catch (error) {
     console.log(error);
     res.status(500).send("Upss... hubo un error en el servidor. " + error);
   }
 };
 
-// Ver productos
-exports.products = (req, res) => {
-  res.json([
-    {
-      category: "Moda",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nihil tempora soluta quidem suscipit.",
-      image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-      price: 20000,
-      quantity: 20,
-      rating: 5,
-      title: "Mens Casual Slim Fit",
-      total: 25000,
-    },
-    {
-      category: "Moda",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nihil tempora soluta quidem suscipit.",
-      image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-      price: 20000,
-      quantity: 20,
-      rating: 5,
-      title: "Mens Casual Slim Fit",
-      total: 25000,
-    },
-    {
-      category: "Moda",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nihil tempora soluta quidem suscipit.",
-      image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-      price: 20000,
-      quantity: 20,
-      rating: 5,
-      title: "Mens Casual Slim Fit",
-      total: 25000,
-    },
-  ]);
+// Actualizar producto
+exports.updateProduct = async (req, res) => {
+  try {
+    console.log(req.body);
+    const {
+      category,
+      description,
+      image,
+      price,
+      quantity,
+      rating,
+      title,
+      total,
+    } = req.body;
+
+    let dataProduct = await Product.findById(req.params.id);
+
+    // Validación
+    if (!dataProduct) {
+      res.status(404).json({ msg: "El producto no existe" });
+    }
+
+    dataProduct.category = category;
+    dataProduct.description = description;
+    dataProduct.image = image;
+    dataProduct.price = price;
+    dataProduct.quantity = quantity;
+    dataProduct.rating = rating;
+    dataProduct.title = title;
+    dataProduct.total = total;
+
+    dataProduct = await Product.findOneAndUpdate(
+      { _id: req.params.id },
+      dataProduct,
+      { new: true }
+    );
+
+    res.json(dataProduct);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Upss... hubo un error en el servidor. " + error);
+  }
+};
+
+// Eliminar un producto
+exports.deleteProduct = async (req, res) => {
+  try {
+    let dataProduct = await Product.findById(req.params.id);
+
+    if (!dataProduct) {
+      res.status(404).json({ error: "El producto no existe" });
+    }
+
+    await Product.findOneAndRemove({ _id: req.params.id });
+    res.json({ msg: "El producto fue eliminado corractamente" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Upss... hubo un error en el servidor. " + error);
+  }
 };

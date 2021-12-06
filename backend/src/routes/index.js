@@ -24,9 +24,11 @@ router.get("/tareas-privadas", verifyToken, indexController.tareasPrivadas);
 router.get("/perfil", verifyToken, indexController.perfil);
 
 // Rutas de productos
-router.post("/agregar-producto", productController.addProduct);
-
-router.get("/productos", productController.products);
+router.get("/productos", productController.getProducts);
+router.get("/productos/:id", productController.getProduct);
+router.post("/productos", productController.addProduct);
+router.put("/productos/:id", productController.updateProduct);
+router.delete("/productos/:id", productController.deleteProduct);
 
 module.exports = router;
 
