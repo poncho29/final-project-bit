@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
-import { TareasComponent } from './components/tareas/tareas.component';
-import { TareasPrivadasComponent } from './components/tareas-privadas/tareas-privadas.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,14 +23,15 @@ import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { FiltroPipe } from './pipes/filtro.pipe';
 import { LoadingComponent } from './components/loading/loading.component';
+import { DashboardProductosComponent } from './components/dashboard-productos/dashboard-productos.component';
+import { InventarioProductosComponent } from './components/inventario-productos/inventario-productos.component';
+import { RegistroProductosComponent } from './components/registro-productos/registro-productos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
     LoginComponent,
-    TareasComponent,
-    TareasPrivadasComponent,
     NavbarComponent,
     FooterComponent,
     NoFoundPageComponent,
@@ -41,7 +40,10 @@ import { LoadingComponent } from './components/loading/loading.component';
     NosotrosComponent,
     ProductosComponent,
     FiltroPipe,
-    LoadingComponent
+    LoadingComponent,
+    DashboardProductosComponent,
+    InventarioProductosComponent,
+    RegistroProductosComponent
   ],
   imports: [
     BrowserModule,

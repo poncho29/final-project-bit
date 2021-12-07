@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between align-items-center my-3">
+  <h4 class="fs-2 text-center">Inventario general productos</h4>
+  <button type="button" class="btn btn-warning" routerLink="registro">CREAR PRODUCTO</button>
+</div>
+
+<div class="table-responsive" *ngIf="listarProductos.length > 0; else noproductos">
+  <table class="table table-hover">
+      <thead>
+          <tr class="text-center">
+              <th>Código</th>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Categoría</th>
+              <th>Url-imagen</th>
+              <th>Acción</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of listarProductos">
+          <td>{{producto.code}}</td>
+          <td>{{producto.title}}</td>
+          <td>{{producto.description}}</td>
+          <td>{{producto.price | currency:'$':'symbol':'.0-0'}}</td>
+          <td>{{producto.category}}</td>
+          <td><a [href]="producto.image" target="_blank">{{producto.image}}</a></td>
+          <td>
+            <div class="d-flex justify-content-around align-items-center">
+              <button class="btn btn-warning" [routerLink]="['/admin-productos/editar', producto._id]"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-danger" (click)="eliminarProducto(producto._id)"><i class="fas fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+<ng-template #noproductos>
+  <h2 class="text-warning text-center fw-bold">No hay productos registrados</h2>
+</ng-template>

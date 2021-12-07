@@ -3,25 +3,25 @@
 */
 const {Router} = require('express');
 const router = Router();
-const indexController = require('../controllers/indexController');
+const userController = require('../controllers/userController');
+const productController = require("../controllers/productController");
 
-
-router.post('/inicio', verifyToken, indexController.rutaInicial);
+/* Ruta para devolver el token, nombre y rol de usuario */
+router.post('/inicio', verifyToken, userController.rutaInicial);
 
 /* Ruta registrar usuario */
-router.post('/registro', indexController.registrarUsuario);
+router.post('/registro', userController.registrarUsuario);
 
 /* Ruta login usuario */
-router.post('/login', indexController.loginUsuario);
+router.post('/login', userController.loginUsuario);
 
-/* Ruta Tareas - ejemplo de como se enviarian otras cosas - Datos publicos, ya que no necesitan autenticarsen para verlos */
-router.get('/tareas',indexController.tareas);
+// Rutas de productos
+router.get("/productos", productController.getProducts);
+router.get("/productos/:id", productController.getProduct);
+router.post("/productos", productController.addProduct);
+router.put("/productos/:id", productController.updateProduct);
+router.delete("/productos/:id", productController.deleteProduct);
 
-/* Ruta de prueba - Simular datos privados haciendo uso de la funcion verifyToken declarada en la parte inferior */
-router.get('/tareas-privadas', verifyToken,indexController.tareasPrivadas);
-
-/* Otra Ruta de prueba - simular otras urls privadas haciendo uso de la funcion verifyToken */
-router.get('/perfil', verifyToken ,indexController.perfil);
 
 module.exports = router;
 

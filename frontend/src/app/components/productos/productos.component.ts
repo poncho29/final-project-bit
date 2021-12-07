@@ -18,6 +18,8 @@ export class ProductosComponent implements OnInit {
   llaveBusqueda: string = '';
 
   infoProductoModal:Producto = {
+    _id:         "",
+    code:        "",
     category:    "",
     description: "",
     id:          0,
@@ -37,9 +39,6 @@ export class ProductosComponent implements OnInit {
       this.listaProductos = res;
       this.filtroCategoria = res;
       this.listaProductos.forEach((a:Producto) => {
-        if(a.category === "women's clothing" || a.category ==="men's clothing"){
-          a.category ="moda";
-        }
         Object.assign(a,{quantity:1,total:a.price});
       });
       this.loading = false;

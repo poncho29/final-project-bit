@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 //Components
-import { TareasComponent } from './components/tareas/tareas.component';
-import { TareasPrivadasComponent } from './components/tareas-privadas/tareas-privadas.component';
+
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -14,6 +13,9 @@ import { HomeComponent } from './components/home/home.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { DashboardProductosComponent } from './components/dashboard-productos/dashboard-productos.component';
+import { InventarioProductosComponent } from './components/inventario-productos/inventario-productos.component';
+import { RegistroProductosComponent } from './components/registro-productos/registro-productos.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'inicio', pathMatch:'full'},
@@ -23,8 +25,12 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'carrito', component: CarritoComponent},
   {path: 'nosotros', component: NosotrosComponent},
-  {path: 'tareas', component: TareasComponent},
-  {path: 'privado', component: TareasPrivadasComponent, canActivate:[AuthGuard]},
+  {path: 'admin-productos', component: DashboardProductosComponent, canActivate:[AuthGuard],
+    children:[
+      {path: '', component: InventarioProductosComponent},
+      {path: 'registro', component: RegistroProductosComponent},
+      {path: 'editar/:id', component: RegistroProductosComponent},
+    ]},
   {path: '404', component: NoFoundPageComponent},
   {path: '**', redirectTo: '404', pathMatch: 'full'}
 ];

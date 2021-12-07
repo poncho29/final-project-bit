@@ -15,8 +15,6 @@ export class RegistroComponent implements OnInit {
 
   myForm:FormGroup;
 
-  name!:string;
-
   validacionEmail = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
 
   constructor(private fb: FormBuilder, private authService:AuthService, private router:Router) {

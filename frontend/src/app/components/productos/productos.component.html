@@ -7,7 +7,7 @@
       </a>
     </div>
     <div class="item">
-      <a (click)="filtrar('electronics')">
+      <a (click)="filtrar('tecnologia')">
         <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="">
         <h6>Tecnología</h6>
       </a>
@@ -19,9 +19,9 @@
       </a>
     </div>
     <div class="item">
-      <a (click)="filtrar('jewelery')">
+      <a (click)="filtrar('bisuteria')">
         <img style="width: 62px; margin-top: 5px;" src="https://rukminim1.flixcart.com/image/580/696/kkh6zrk0/jewellery-set/o/w/z/gt-ns-862-matushri-art-original-imafzt9teacakjyn.jpeg?q=50" alt="">
-        <h6>Joyería</h6>
+        <h6>Bisutería</h6>
       </a>
     </div>
   </div>
@@ -41,7 +41,7 @@
       </div>
       <h5 class="info-card">{{producto.title}}</h5>
       <p class="info-card">{{producto.description}}</p>
-      <p><strong>Precio: </strong>{{producto.price | currency}}</p>
+      <p><strong>Precio: </strong>{{producto.price | currency:'$':'symbol':'.0-0'}}</p>
       <div class="d-flex align-items-center justify-content-around">
         <button type="button" class="btn btn-dark btn-acciones" (click)="agregarAlCarro(producto)">Añadir <i class="fas fa-shopping-cart"></i></button>
         <button type="button" class="btn btn-warning btn-acciones" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="mostrarInfoModal(producto)">Mas info <i class="fas fa-info-circle"></i></button>
@@ -63,6 +63,7 @@
           <img [src]="infoProductoModal.image" alt="imagen-producto" class="img-modal">
         </div>
         <p>{{infoProductoModal.description}}</p>
+        <p><strong>Categoría: </strong>{{infoProductoModal.category}}</p>
         <p><strong>Precio: </strong>{{infoProductoModal.price | currency}}</p>
       </div>
       <div class="modal-footer d-flex align-items-center justify-content-around">

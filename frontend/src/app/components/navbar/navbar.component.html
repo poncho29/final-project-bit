@@ -15,12 +15,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/nosotros" routerLinkActive="active">Nosotros</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/tareas" routerLinkActive="active">Tareas</a>
-        </li>
-        <ng-container *ngIf="authService.usuarioLogueado()">
+        <ng-container *ngIf="authService.usuarioLogueado() && authService.getRolAdmin()">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/privado" routerLinkActive="active">Admin productos</a>
+            <a class="nav-link" routerLink="/admin-productos" routerLinkActive="active">Administración productos</a>
           </li>
         </ng-container>
       </ul>

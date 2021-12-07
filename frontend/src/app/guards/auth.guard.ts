@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -12,19 +13,16 @@ import { AuthService } from '../services/auth.service';
   no tiene un token, entonces retorna un false y lo que va hacer es redireccionar a la ruta del login para que inicie la sesion y asi poder
   obtener el Token que se necesita para navegar por esa ruta.
 */
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate{
 
   constructor(private authService:AuthService, private router:Router){}
 
-  canActivate(): boolean{
-
-    if(this.authService.usuarioLogueado()){
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
+    if(this.authService.usuarioLogueado() && this.authService.getRolAdmin()){
       return true;
     }
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
     return false;
-
   }
-
 }

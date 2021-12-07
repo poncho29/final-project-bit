@@ -66,6 +66,14 @@ export class AuthService {
   }
 
   getToken():string | null{
-    return localStorage.getItem('token');
+    return this.token;
+  }
+
+  getRolAdmin():boolean{
+    if(this.rolUser === 'admin'){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
