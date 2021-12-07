@@ -2,6 +2,11 @@ const { Schema, model } = require("mongoose");
 
 const productSchema = new Schema(
   {
+    code: {
+      type: String,
+      require: true,
+      trim: true,
+    },
     category: {
       type: String,
       require: true,
@@ -34,11 +39,6 @@ const productSchema = new Schema(
     },
     title: {
       type: String,
-      require: true,
-      trim: true,
-    },
-    total: {
-      type: Number,
       require: true,
       trim: true,
     },

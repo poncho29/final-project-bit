@@ -1,6 +1,3 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-
 const Product = require("../models/producto");
 
 // Ver todos productos
@@ -34,6 +31,7 @@ exports.getProduct = async (req, res) => {
 exports.addProduct = async (req, res) => {
   try {
     const {
+      code,
       category,
       description,
       image,
@@ -41,10 +39,10 @@ exports.addProduct = async (req, res) => {
       quantity,
       rating,
       title,
-      total,
     } = req.body;
 
     const newProduct = new Product({
+      code: code,
       category: category,
       description: description,
       image: image,
@@ -52,10 +50,9 @@ exports.addProduct = async (req, res) => {
       quantity: quantity,
       rating: rating,
       title: title,
-      total: total,
     });
 
-    const product_exits = await Product.findOne({ title: title });
+    const product_exits = await Product.findOne({ code: code });
 
     if (!product_exits) {
       await newProduct.save();
@@ -74,6 +71,7 @@ exports.updateProduct = async (req, res) => {
   try {
     console.log(req.body);
     const {
+      code,
       category,
       description,
       image,
@@ -81,7 +79,6 @@ exports.updateProduct = async (req, res) => {
       quantity,
       rating,
       title,
-      total,
     } = req.body;
 
     let dataProduct = await Product.findById(req.params.id);
@@ -91,6 +88,7 @@ exports.updateProduct = async (req, res) => {
       res.status(404).json({ msg: "El producto no existe" });
     }
 
+    dataProduct.code = code;
     dataProduct.category = category;
     dataProduct.description = description;
     dataProduct.image = image;
@@ -98,7 +96,6 @@ exports.updateProduct = async (req, res) => {
     dataProduct.quantity = quantity;
     dataProduct.rating = rating;
     dataProduct.title = title;
-    dataProduct.total = total;
 
     dataProduct = await Product.findOneAndUpdate(
       { _id: req.params.id },
