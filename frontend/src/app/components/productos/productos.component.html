@@ -24,6 +24,12 @@
         <h6>Bisutería</h6>
       </a>
     </div>
+    <div class="item">
+      <a (click)="filtrar('celulares')">
+        <img style="width: 93px; margin-top: 5px;" src="https://img.freepik.com/psd-gratis/mockup-varios-smartphone_23-2147998660.jpg?size=626&ext=jpg" alt="">
+        <h6>Celulares</h6>
+      </a>
+    </div>
   </div>
   <div class="col-sm-12 col-md-4 col-lg-4 form-group">
     <input type="text" [(ngModel)]="terminoBusqueda" (keyup)="busqueda($event)"  placeholder="buscar producto...." class="form-control">

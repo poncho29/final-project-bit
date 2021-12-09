@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53">
+  <g id="Grupo_26" data-name="Grupo 26" transform="translate(-243 -1138)">
+    <g id="icon-refigeracion" transform="translate(244 1139)">
+      <rect id="Rectángulo_554" data-name="Rectángulo 554" width="51" height="51" fill="none"/>
+      <path id="Trazado_5540" data-name="Trazado 5540" d="M682.558,272.653H663.185a4.352,4.352,0,0,1-4.347-4.347V226.04a4.346,4.346,0,0,1,4.345-4.349h19.375a4.352,4.352,0,0,1,4.347,4.347v9.493a.826.826,0,1,1-1.651,0V226.04a2.7,2.7,0,0,0-2.7-2.7H663.185a2.7,2.7,0,0,0-2.7,2.7v42.266a2.7,2.7,0,0,0,2.7,2.7h19.373a2.7,2.7,0,0,0,2.7-2.7V241.833H665.827a.826.826,0,0,1,0-1.651H686.08a.826.826,0,0,1,.826.826v27.3A4.352,4.352,0,0,1,682.558,272.653Z" transform="translate(-647.69 -221.691)" fill="#fff"/>
+      <path id="Trazado_5541" data-name="Trazado 5541" d="M673,233.425a.826.826,0,0,1-.825-.825v-5.283a.826.826,0,1,1,1.651,0V232.6A.826.826,0,0,1,673,233.425Z" transform="translate(-639.01 -218.566)" fill="#fff"/>
+      <path id="Trazado_5542" data-name="Trazado 5542" d="M673,243.025a.826.826,0,0,1-.825-.826v-5.283a.826.826,0,1,1,1.651,0V242.2A.826.826,0,0,1,673,243.025Z" transform="translate(-639.01 -212.316)" fill="#fff"/>
+    </g>
+    <rect id="Rectángulo_563" data-name="Rectángulo 563" width="53" height="53" transform="translate(243 1138)" fill="none"/>
+  </g>
+</svg>

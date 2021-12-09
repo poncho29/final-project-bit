@@ -1,0 +1,93 @@
+.phoneCarousel{
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .productResponsive{
+        display: none;
+    }
+
+    .phoneCarousel{
+        display: block;
+    }
+
+    .cardTwo{
+        padding: 10px;
+        border: none;
+    }
+    
+    .imgCardResponsive{
+        width: 150px !important;
+        height: 110px;
+        margin-bottom: 15px;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+@media (max-width: 576px) {
+    .productResponsive{
+        display: none;
+    }
+
+    .phoneCarousel{
+        display: block;
+    }
+
+    .cardTwo{
+        padding: 10px;
+        border: none;
+    }
+    
+    .imgCardResponsive{
+        width: 100px !important;
+        height: 80px;
+        margin-bottom: 15px;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.titleCategory{
+    color: #444444;
+    border-bottom: 4px solid #ffc107;
+    float: left;
+    font-size: 24px;
+    margin-bottom: 0 !important;
+}
+
+.spanRed{
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.grayBorder{
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.cardImgBank{
+    width: 40% !important;
+}
+
+.cardBack{
+    border: none !important;
+    box-shadow: 0 6px 10px #00000024 !important;
+    border-radius: 20px !important;
+}
+
+.cardBack:hover{
+    box-shadow: 0px 0px 22px 6px rgba(0, 0, 0, 0.158) !important;
+}
+
+.cardTwo{
+    padding: 10px;
+    border: none;
+}
+
+.cardTwo img:hover, .imgCard:hover{
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.imgCard{
+    width: 60% !important;
+    height: 40% !important;
+}

@@ -1,0 +1,53 @@
+@media (max-width: 576px) {
+    .spanResponsive {
+        display: inline-block !important;
+        position: relative !important;
+        top: 0 px !important; 
+        color: #fff !important;
+        padding-left: 4% !important;
+    }
+    
+    .borderResponsive{
+        border-right: solid thin #fff !important;
+        padding-right: 5% !important;
+        margin: 10px 0px !important;
+    }
+
+    .parrafResponsive{
+        padding-top: 8% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .parrafResponsive{
+        padding-top: 8% !important;
+    }
+}
+
+.colorBlue{
+    color:  #003780 !important;
+}
+
+.colorGray{
+    color: #444444 !important;
+}
+
+.textBanner{
+    font-weight: normal !important;
+}
+
+.colorBlack{
+    background-color: #000 !important;
+}
+
+.colorYellow{
+    background-color: #ffc107 !important;
+}
+
+.boton{
+    color: #444444 !important;
+}
+
+.fontYellow{
+    color: #ffc107 !important;    
+}
