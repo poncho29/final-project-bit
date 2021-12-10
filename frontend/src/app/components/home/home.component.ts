@@ -10,12 +10,14 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class HomeComponent implements OnInit {
 
-	listaProductos: Producto[] = []; 
+	listaProductos: Producto[] = [];
+	randomProducts: Producto[] = [];
 
 	constructor(private _productoservice: ProductosService) { }
 	
 	ngOnInit(): void {
 		this.obtenerProductos();
+		this.getRandomProduct()
 	}
 
 	obtenerProductos(){
@@ -23,6 +25,19 @@ export class HomeComponent implements OnInit {
 			// console.log(data);
 			this.listaProductos = data;
 			// console.log(this.listaProductos)
+		}, error => {
+			console.log(error)
+		})
+	}
+
+	getRandomProduct(){
+		this._productoservice.getProductos().subscribe(data => {
+			for (let it = 0; it < 4; it++) {
+				var random = this.listaProductos[Math.floor(data.length*Math.random())]
+				// console.log(it, random)
+				this.randomProducts.push(random);
+			}
+			// console.log(this.randomProducts)
 		}, error => {
 			console.log(error)
 		})
