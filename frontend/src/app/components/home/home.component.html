@@ -37,7 +37,7 @@
     </div>
     <div class="row my-4">
         <ng-container *ngFor="let ranProduct of randomProducts">
-            <div class="col-lg-3 col-md-3 card-group">
+            <div class="col-lg-3 col-md-3 card-group" *ngIf="randomProducts.length > 0">
                 <div class="card justify-content-center align-items-center">
                     <img [src]="ranProduct.image" class="card-img-top imgCard my-4">
                     <div class="card-body justify-content-center align-items-center d-flex flex-column">
@@ -53,7 +53,7 @@
         <div class="phoneCarousel">
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let ranProduct of randomProducts">
-                    <ng-template carouselSlide>
+                    <ng-template carouselSlide *ngIf="randomProducts.length > 0">
                         <div class="cardTwo h-100 d-flex flex-column justify-content-evenly">
                             <div class="d-flex align-items-center justify-content-center">
                                 <img [src]="ranProduct.image" class="imgCardResponsive"
