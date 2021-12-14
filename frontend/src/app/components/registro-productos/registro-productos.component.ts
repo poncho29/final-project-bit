@@ -42,6 +42,7 @@ export class RegistroProductosComponent implements OnInit {
       category: this.myForm.get('category')?.value,
       image: this.myForm.get('image')?.value
 		}
+    console.log(PRODUCTO);
 
     if(this.id == null){
       this.productoSvc.postProducto(PRODUCTO).subscribe( data => {

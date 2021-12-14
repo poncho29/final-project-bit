@@ -25,9 +25,14 @@
             <span class="text-danger fw-bolder tamano-alertas" *ngIf="myForm.get('price')?.hasError('required') && myForm.get('price')?.touched">El precio es obligatorio *</span>
         </div>
         <div class="form-group form-floating mb-3">
-            <input type="text" name="category" class="form-control" id="category" placeholder="Ingrese la categoría" formControlName="category" required>
+            <select class="form-select" id="category" formControlName="category" required>
+              <option disabled [selected]="true">Seleccione una categoria....</option>
+              <option value="tecnologia">tecnologia</option>
+              <option value="moda">moda</option>
+              <option value="bisuteria">bisuteria</option>
+              <option value="celulares">celulares</option>
+            </select>
             <label for="category">Categoría</label>
-            <span class="text-danger fw-bolder tamano-alertas" *ngIf="myForm.get('category')?.hasError('required') && myForm.get('category')?.touched">La categoría es obligatoria *</span>
         </div>
         <div class="form-group form-floating mb-3">
             <input type="text" name="image" class="form-control" id="image" placeholder="Ingrese la URL imagen" formControlName="image" required>
