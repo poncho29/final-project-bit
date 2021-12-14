@@ -1,81 +1,81 @@
 <div class="row card-top flex-row justify-content-between align-items-center my-3 py-3">
-  <div class="d-none d-md-flex col-md-8 col-lg-8">
-    <div class="item">
-      <a (click)="filtrar('')">
-        <img src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" alt="">
-        <h6>Todos</h6>
-      </a>
+    <div class="d-none d-md-flex col-md-8 col-lg-8">
+        <div class="item">
+            <a (click)="filtrar('')">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" alt="">
+                <h6>Todos</h6>
+            </a>
+        </div>
+        <div class="item">
+            <a (click)="filtrar('tecnologia')">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="">
+                <h6>Tecnología</h6>
+            </a>
+        </div>
+        <div class="item">
+            <a (click)="filtrar('moda')">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100" alt="">
+                <h6>Moda</h6>
+            </a>
+        </div>
+        <div class="item">
+            <a (click)="filtrar('bisuteria')">
+                <img style="width: 62px; margin-top: 5px;" src="https://rukminim1.flixcart.com/image/580/696/kkh6zrk0/jewellery-set/o/w/z/gt-ns-862-matushri-art-original-imafzt9teacakjyn.jpeg?q=50" alt="">
+                <h6>Bisutería</h6>
+            </a>
+        </div>
+        <div class="item">
+            <a (click)="filtrar('celulares')">
+                <img style="width: 93px; margin-top: 5px;" src="https://img.freepik.com/psd-gratis/mockup-varios-smartphone_23-2147998660.jpg?size=626&ext=jpg" alt="">
+                <h6>Celulares</h6>
+            </a>
+        </div>
     </div>
-    <div class="item">
-      <a (click)="filtrar('tecnologia')">
-        <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="">
-        <h6>Tecnología</h6>
-      </a>
+    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+        <input type="text" [(ngModel)]="terminoBusqueda" (keyup)="busqueda($event)" placeholder="buscar producto...." class="form-control">
+        <span class="fas fa-search search-icon"></span>
     </div>
-    <div class="item">
-      <a (click)="filtrar('moda')">
-        <img src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100" alt="">
-        <h6>Moda</h6>
-      </a>
-    </div>
-    <div class="item">
-      <a (click)="filtrar('bisuteria')">
-        <img style="width: 62px; margin-top: 5px;" src="https://rukminim1.flixcart.com/image/580/696/kkh6zrk0/jewellery-set/o/w/z/gt-ns-862-matushri-art-original-imafzt9teacakjyn.jpeg?q=50" alt="">
-        <h6>Bisutería</h6>
-      </a>
-    </div>
-    <div class="item">
-      <a (click)="filtrar('celulares')">
-        <img style="width: 93px; margin-top: 5px;" src="https://img.freepik.com/psd-gratis/mockup-varios-smartphone_23-2147998660.jpg?size=626&ext=jpg" alt="">
-        <h6>Celulares</h6>
-      </a>
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-    <input type="text" [(ngModel)]="terminoBusqueda" (keyup)="busqueda($event)"  placeholder="buscar producto...." class="form-control">
-    <span class="fas fa-search search-icon"></span>
-  </div>
 </div>
 
 <app-loading *ngIf="loading"></app-loading>
 
 <div class="row">
-  <ng-container *ngFor="let producto of filtroCategoria | filtro:llaveBusqueda:'title'">
-    <div class="card h-100 col-sm-12 col-md-4 col-lg-3 d-flex flex-column justify-content-evenly">
-      <div class="text-center">
-        <img [src]="producto.image" alt="imagen-producto">
-      </div>
-      <h5 class="info-card">{{producto.title}}</h5>
-      <p class="info-card">{{producto.description}}</p>
-      <p><strong>Precio: </strong>{{producto.price | currency:'$':'symbol':'.0-0'}}</p>
-      <div class="d-flex align-items-center justify-content-around">
-        <button type="button" class="btn btn-dark btn-acciones" (click)="agregarAlCarro(producto)">Añadir <i class="fas fa-shopping-cart"></i></button>
-        <button type="button" class="btn btn-warning btn-acciones" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="mostrarInfoModal(producto)">Mas info <i class="fas fa-info-circle"></i></button>
-      </div>
-    </div>
-  </ng-container>
+    <ng-container *ngFor="let producto of filtroCategoria | filtro:llaveBusqueda:'title'">
+        <div class="card h-100 col-sm-12 col-md-4 col-lg-3 d-flex flex-column justify-content-evenly" *ngIf="producto">
+            <div class="text-center">
+                <img [src]="producto.image" alt="imagen-producto">
+            </div>
+            <h5 class="info-card">{{producto.title}}</h5>
+            <p class="info-card">{{producto.description}}</p>
+            <p><strong>Precio: </strong>{{producto.price | currency:'$':'symbol':'.0-0'}}</p>
+            <div class="d-flex align-items-center justify-content-around">
+                <button type="button" class="btn btn-dark btn-acciones" (click)="agregarAlCarro(producto)">Añadir <i class="fas fa-shopping-cart"></i></button>
+                <button type="button" class="btn btn-warning btn-acciones" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="mostrarInfoModal(producto)">Mas info <i class="fas fa-info-circle"></i></button>
+            </div>
+        </div>
+    </ng-container>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">{{infoProductoModal.title}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="text-center">
-          <img [src]="infoProductoModal.image" alt="imagen-producto" class="img-modal">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{infoProductoModal.title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <img [src]="infoProductoModal.image" alt="imagen-producto" class="img-modal">
+                </div>
+                <p>{{infoProductoModal.description}}</p>
+                <p><strong>Categoría: </strong>{{infoProductoModal.category}}</p>
+                <p><strong>Precio: </strong>{{infoProductoModal.price | currency}}</p>
+            </div>
+            <div class="modal-footer d-flex align-items-center justify-content-around">
+                <button type="button" class="btn btn-warning btn-acciones" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-dark btn-acciones" (click)="agregarAlCarro(infoProductoModal)">Añadir <i class="fas fa-shopping-cart"></i></button>
+            </div>
         </div>
-        <p>{{infoProductoModal.description}}</p>
-        <p><strong>Categoría: </strong>{{infoProductoModal.category}}</p>
-        <p><strong>Precio: </strong>{{infoProductoModal.price | currency}}</p>
-      </div>
-      <div class="modal-footer d-flex align-items-center justify-content-around">
-        <button type="button" class="btn btn-warning btn-acciones" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-dark btn-acciones" (click)="agregarAlCarro(infoProductoModal)">Añadir <i class="fas fa-shopping-cart"></i></button>
-      </div>
     </div>
-  </div>
 </div>

@@ -43,7 +43,7 @@ export class CarritoComponent implements OnInit {
           left top
           no-repeat
       `
-  });
+    });
   }
 
 }
